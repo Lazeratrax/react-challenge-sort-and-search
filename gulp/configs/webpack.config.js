@@ -6,6 +6,11 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
+  ],
   module: {
     loaders: [{
       test: /\.js$/,

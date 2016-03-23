@@ -15,20 +15,16 @@ export default class App extends Component {
   }
 
   getData() {
-    $.ajax({
-      url: './data.json',
-			type: 'GET',
-			contentType: 'application/json',
-			json: true,
-			success: (data) => {
+    fetch('./data.json')
+      .then((response) => {
+        return response.json()
+      }).then((json) => {
         this.setState({
-          userData: data
+          userData: json
         });
-			},
-			error: (error) => {
-				console.error(error);
-			}
-    });
+      }).catch((ex) => {
+        console.log('parsing failed', ex)
+      });
   }
 
   render() {

@@ -10,7 +10,7 @@ export default class UserList extends Component {
     const userData = this.props.userData;
     let userRows = [];
 
-    for (let user of userData) {
+    for (let user of userData || []) {
       userRows.push(<UserData user={user} key={user.id} />);
     }
 

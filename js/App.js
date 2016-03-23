@@ -16,7 +16,7 @@ export default class App extends Component {
 
   getData() {
     $.ajax({
-      url: '/data.json',
+      url: './data.json',
 			type: 'GET',
 			contentType: 'application/json',
 			json: true,

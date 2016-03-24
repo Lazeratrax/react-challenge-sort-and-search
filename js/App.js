@@ -8,7 +8,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      userData: null
+      userData: null,
+      savedUserData: null
     };
   }
 
@@ -18,18 +19,26 @@ export default class App extends Component {
         return response.json();
       }).then((json) => {
         this.setState({
-          userData: json
+          savedUserData: Immutable.fromJS(json),
+          userData: Immutable.fromJS(json)
         });
       }).catch((ex) => {
         console.log('parsing failed', ex);
       });
   }
 
+  onKeyUp(value) {
+    const filter = x => x.get('name').toLowerCase().includes(value.toLowerCase());
+    this.setState({
+      userData: this.state.savedUserData.filter(filter)
+    });
+  }
+
   render() {
     return (
       <div className="container app">
-        <SearchBar />
-        <UserList userData={this.state.userData} />
+        <SearchBar onKeyUp={this.onKeyUp.bind(this)} />
+        <UserList savedUserData={this.state.savedUserData} userData={this.state.userData} />
       </div>
     );
   }

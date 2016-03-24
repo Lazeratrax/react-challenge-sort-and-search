@@ -10,11 +10,13 @@ export default class UserList extends Component {
     const userData = this.props.userData;
     let userRows = [];
 
-    for (let user of userData || []) {
-      userRows.push(<UserData user={user} key={user.id} />);
+    if(userData) {
+      userData.map((user) => {
+        userRows.push(<UserData user={user} key={user.get('id')} />);
+      });
     }
 
-    const isDataLoaded = userRows.length !== 0;
+    const isDataLoaded = this.props.savedUserData;
     const loading = <span>Loading...</span>;
 
     return isDataLoaded? (

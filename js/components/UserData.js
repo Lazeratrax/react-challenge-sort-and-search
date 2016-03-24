@@ -11,11 +11,11 @@ export default class UserData extends Component {
     return (
       <tr>
         <td>
-          <img src={"images/"+userData.image+".svg"} className="user-image" />
+          <img src={"images/"+userData.get('image')+".svg"} className="user-image" />
         </td>
-        <td>{userData.name}</td>
-        <td>{userData.age}</td>
-        <td>{userData.phone}</td>
+        <td>{userData.get('name')}</td>
+        <td>{userData.get('age')}</td>
+        <td>{userData.get('phone')}</td>
       </tr>
     );
   }

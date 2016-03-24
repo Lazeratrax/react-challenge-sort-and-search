@@ -8,6 +8,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
+      'Immutable': 'Immutable',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ],

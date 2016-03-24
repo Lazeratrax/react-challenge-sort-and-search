@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
   }
 
   onKeyUp(e) {
-    console.log(e.target.value);
+    this.props.onKeyUp(e.target.value);
   }
 
   render() {
@@ -16,7 +16,7 @@ export default class SearchBar extends Component {
           <div className="searchbar form-group">
             <input
                type="text"
-               onKeyUp={this.onKeyUp}
+               onKeyUp={this.onKeyUp.bind(this)}
                className="form-control"
                placeholder="Search people by name..."
              />

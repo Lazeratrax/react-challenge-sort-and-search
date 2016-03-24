@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import SearchBar from './components/SearchBar';
 import UserList from './components/UserList';
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userData: null,
-      savedUserData: null
+      filteredData: null,
+      data: null
     };
   }
 
@@ -19,8 +18,8 @@ export default class App extends Component {
         return response.json();
       }).then((json) => {
         this.setState({
-          savedUserData: Immutable.fromJS(json),
-          userData: Immutable.fromJS(json)
+          filteredData: Immutable.fromJS(json),
+          data: Immutable.fromJS(json)
         });
       }).catch((ex) => {
         console.log('parsing failed', ex);
@@ -30,7 +29,7 @@ export default class App extends Component {
   onKeyUp(value) {
     const filter = x => x.get('name').toLowerCase().includes(value.toLowerCase());
     this.setState({
-      userData: this.state.savedUserData.filter(filter)
+      filteredData: this.state.data.filter(filter)
     });
   }
 
@@ -38,7 +37,7 @@ export default class App extends Component {
     return (
       <div className="container app">
         <SearchBar onKeyUp={this.onKeyUp.bind(this)} />
-        <UserList savedUserData={this.state.savedUserData} userData={this.state.userData} />
+        <UserList isDataLoaded={!!this.state.data} userData={this.state.filteredData} />
       </div>
     );
   }

@@ -16,7 +16,7 @@ export default class UserList extends Component {
       });
     }
 
-    const isDataLoaded = this.props.savedUserData;
+    const isDataLoaded = this.props.isDataLoaded;
     const loading = <span>Loading...</span>;
 
     return isDataLoaded? (

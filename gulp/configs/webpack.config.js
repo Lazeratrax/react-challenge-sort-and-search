@@ -7,6 +7,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+    }),
     new webpack.ProvidePlugin({
       'Immutable': 'Immutable',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'

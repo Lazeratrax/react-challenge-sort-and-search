@@ -12,7 +12,14 @@ export default class UserTable extends Component {
 
     if(userData) {
       userData.map((user) => {
-        userRows.push(<UserRow user={user} key={user.get('id')} />);
+        const userRow = (
+          <UserRow
+            user={user}
+            key={user.get('id')}
+            activeUserChanged={this.props.activeUserChanged.bind(this)}
+          />
+        );
+        userRows.push(userRow);
       });
     }
 

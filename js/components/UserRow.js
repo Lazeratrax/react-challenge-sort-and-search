@@ -5,13 +5,17 @@ export default class UserRow extends Component {
     super(props);
   }
 
+  handleClick(e) {
+    this.props.activeUserChanged(this.props.user.get('id'));
+  }
+
   render() {
     const userData = this.props.user;
 
     return (
-      <tr>
+      <tr onClick={this.handleClick.bind(this)}>
         <td>
-          <img src={"images/"+userData.get('image')+".svg"} className="user-image" />
+          <img src={`images/${userData.get('image')}.svg`} className="user-image" />
         </td>
         <td>{userData.get('name')}</td>
         <td>{userData.get('age')}</td>

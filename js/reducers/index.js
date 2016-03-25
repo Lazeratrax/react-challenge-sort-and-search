@@ -12,14 +12,17 @@ export default function searchlist(state = INITIAL_STATE, action) {
 
     case types.SEARCH_TEXT:
       const filter = x => x.get('name').toLowerCase().includes(action.text.toLowerCase());
+      const filteredData = state.data.filter(filter);
       return {
         ...state,
-        filteredData: state.data.filter(filter)
+        filteredData,
+        activeUser: filteredData.get(0)
       }
 
     case types.CHANGE_ACTIVE:
       return {
-        ...state
+        ...state,
+        activeUser: state.data.get(action.id)
       }
 
     case types.RECEIVE_USERS:
@@ -27,6 +30,7 @@ export default function searchlist(state = INITIAL_STATE, action) {
         ...state,
         filteredData: action.data,
         data: action.data,
+        activeUser: action.data.get(0),
         isFetching: false
       }
 

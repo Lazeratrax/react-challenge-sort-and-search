@@ -3,27 +3,42 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as SearchActions from '../actions/SearchActions';
-import { SearchBar, UserTable } from '../components';
-import { searchText } from '../actions/SearchActions';
+import { SearchBar, UserTable, UserDetail } from '../components';
+import { searchText, changeActive } from '../actions/SearchActions';
 
 class SearchApp extends Component {
   constructor(props) {
     super(props);
+    this.store = this.props.store;
   }
 
   onKeyUp(value) {
-    const store = this.props.store;
-    store.dispatch(searchText(value));
+    this.store.dispatch(searchText(value));
+  }
+
+  activeUserChanged(id) {
+    this.store.dispatch(changeActive(id));
   }
 
   render () {
-    const store = this.props.store;
-    const state = store.getState();
+    const state = this.store.getState();
 
     return (
-      <div className="container app">
+      <div className="app container-fluid">
         <SearchBar onKeyUp={this.onKeyUp.bind(this)} />
-        <UserTable isFetching={state.isFetching} userData={state.filteredData} />
+
+        <div className="row">
+          <div className="col-sm-4 col-md-3 col-lg-2">
+            <UserDetail isFetching={state.isFetching} activeUser={state.activeUser} />
+          </div>
+          <div className="col-sm-8 col-md-9 col-lg-10">
+            <UserTable
+              isFetching={state.isFetching}
+              userData={state.filteredData}
+              activeUserChanged={this.activeUserChanged.bind(this)}
+            />
+          </div>
+        </div>
       </div>
     );
   }

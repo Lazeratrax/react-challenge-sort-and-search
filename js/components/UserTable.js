@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import UserData from './UserData';
+import UserRow from './UserRow';
 
-export default class UserList extends Component {
+export default class UserTable extends Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ export default class UserList extends Component {
 
     if(userData) {
       userData.map((user) => {
-        userRows.push(<UserData user={user} key={user.get('id')} />);
+        userRows.push(<UserRow user={user} key={user.get('id')} />);
       });
     }
 

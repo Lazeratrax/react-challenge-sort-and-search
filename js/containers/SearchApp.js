@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as SearchActions from '../actions/SearchActions';
-import { SearchBar, UserList } from '../components';
+import { SearchBar, UserTable } from '../components';
 import { searchText } from '../actions/SearchActions';
 
 class SearchApp extends Component {
@@ -23,7 +23,7 @@ class SearchApp extends Component {
     return (
       <div className="container app">
         <SearchBar onKeyUp={this.onKeyUp.bind(this)} />
-        <UserList isFetching={state.isFetching} userData={state.filteredData} />
+        <UserTable isFetching={state.isFetching} userData={state.filteredData} />
       </div>
     );
   }

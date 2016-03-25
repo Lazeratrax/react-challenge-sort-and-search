@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class UserData extends Component {
+export default class UserRow extends Component {
   constructor(props) {
     super(props);
   }

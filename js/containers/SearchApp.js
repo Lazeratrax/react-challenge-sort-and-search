@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as SearchActions from '../actions/SearchActions';
 import { SearchBar, UserTable, UserDetail } from '../components';
-import { searchText, changeActive } from '../actions/SearchActions';
+import * as actions from '../actions';
+
+const { searchText, changeActive } = actions;
 
 class SearchApp extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ function mapState(state) {
 
 function mapDispatch(dispatch) {
   return {
-    actions: bindActionCreators(SearchActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   };
 }
 

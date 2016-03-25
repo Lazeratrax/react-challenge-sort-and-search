@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import SearchApp from './SearchApp';
 import rootReducer from '../reducers';
-import { fetchUsers } from '../actions/SearchActions';
+import { fetchUsers } from '../actions';
 
 import DevTools from './DevTools';
 

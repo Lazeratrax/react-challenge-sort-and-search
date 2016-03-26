@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { SearchBar, UserTable, UserDetail } from '../components';
+import { SearchBar, ToolBar, UserTable, UserDetail } from '../components';
 import * as actions from '../actions';
 
-const { searchText, changeActive } = actions;
+const { searchText, changeActive, addFilter } = actions;
 
 class SearchApp extends Component {
   constructor(props) {
@@ -21,12 +21,18 @@ class SearchApp extends Component {
     this.store.dispatch(changeActive(id));
   }
 
+  onSorted(type) {
+    this.store.dispatch(addFilter({type}));
+  }
+
   render () {
     const state = this.store.getState();
 
     return (
       <div className="app container-fluid">
         <SearchBar onKeyUp={this.onKeyUp.bind(this)} />
+
+        <ToolBar onSorted={this.onSorted.bind(this)} />
 
         <div className="row">
           <div className="col-sm-4 col-md-3 col-lg-2">

@@ -6,8 +6,24 @@ export default function searchlist(state = INITIAL_STATE, action) {
   switch (action.type) {
 
     case types.ADD_FILTER:
+      const filterType = action.filter.type;
+      const filterFunc = (a, b) => {
+        if(state.isDesc) {
+          if(a.get(filterType) < b.get(filterType)) return -1;
+          if(a.get(filterType) > b.get(filterType)) return 1;
+        } else {
+          if(a.get(filterType) > b.get(filterType)) return -1;
+          if(a.get(filterType) < b.get(filterType)) return 1;
+        }
+        return 0;
+      };
+      const sortedData = state.filteredData.sort(filterFunc);
+
       return {
-        ...state
+        ...state,
+        filteredData: sortedData,
+        isDesc: !state.isDesc,
+        activeUser: sortedData.get(0)
       }
 
     case types.SEARCH_TEXT:

@@ -1,4 +1,4 @@
-[React challenge: sort and search](http://jsraccoon.ru/react-challenge-sort-and-search)
+**[React challenge: sort and search](http://jsraccoon.ru/react-challenge-sort-and-search)**
 
 * [react](https://github.com/facebook/react)
 * [redux](https://github.com/reactjs/redux)

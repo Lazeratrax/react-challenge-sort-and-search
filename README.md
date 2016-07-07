@@ -8,3 +8,5 @@
 * [gulp](https://github.com/gulpjs/gulp)
 * [nodejs](https://github.com/nodejs/node)
 * [npm](https://github.com/npm/npm)
+
+[Result of challenge - VK](http://vk.cc/5mi2rx)
